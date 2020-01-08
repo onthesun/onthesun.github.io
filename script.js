@@ -1,7 +1,6 @@
 'use strict';
 
 let localStream = null;
-let localStream = null;
 let peer = null;
 let existingCall = null;
 
