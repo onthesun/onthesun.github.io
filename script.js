@@ -22,7 +22,6 @@ peer = new Peer({
 
 peer.on('open', function(){
     $('#my-id').text(peer.id);
-    e.preventDefault();
     const call = peer.call('ypax_demo', localStream);
     setupCallEventHandlers(call);
 });
