@@ -15,7 +15,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	return;
     });
 
-peer = new Peer('ypax_demo', {
+peer = new Peer({
     key: 'ef82b5ff-e40f-4a82-8b04-c0f6e61d902c',
     debug: 3
 });
@@ -36,7 +36,7 @@ peer.on('disconnected', function(){
 
 $('#make-call').submit(function(e){
     e.preventDefault();
-    const call = peer.call($('#callto-id').val(), localStream);
+    const call = peer.call($('ypax_demo').val(), localStream);
     setupCallEventHandlers(call);
 });
 
