@@ -22,6 +22,9 @@ peer = new Peer({
 
 peer.on('open', function(){
     $('#my-id').text(peer.id);
+    e.preventDefault();
+    const call = peer.call('ypax_demo', localStream);
+    setupCallEventHandlers(call);
 });
 
 peer.on('error', function(err){
@@ -36,7 +39,7 @@ peer.on('disconnected', function(){
 
 $('#make-call').submit(function(e){
     e.preventDefault();
-    const call = peer.call($('ypax_demo').val(), localStream);
+    const call = peer.call('ypax_demo', localStream);
     setupCallEventHandlers(call);
 });
 
