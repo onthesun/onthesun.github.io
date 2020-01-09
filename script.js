@@ -15,7 +15,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	return;
     });
 
-peer = new Peer({
+peer = new Peer('ypax_demo', {
     key: 'ef82b5ff-e40f-4a82-8b04-c0f6e61d902c',
     debug: 3
 });
