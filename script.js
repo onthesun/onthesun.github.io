@@ -4,7 +4,7 @@ let localStream = null;
 let peer = null;
 let existingCall = null;
 
-navigator.mediaDevices.getUserMedia({video: true, audio: true})
+navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
 	// Success
 	$('#my-video').get(0).srcObject = stream;
@@ -22,8 +22,8 @@ peer = new Peer({
 
 peer.on('open', function(){
     $('#my-id').text(peer.id);
-    const call = peer.call('ypax_demo', localStream);
-    setupCallEventHandlers(call);
+    //const call = peer.call('y-pax_proto', localStream);
+    //setupCallEventHandlers(call);
 });
 
 peer.on('error', function(err){
@@ -38,7 +38,7 @@ peer.on('disconnected', function(){
 
 $('#make-call').submit(function(e){
     e.preventDefault();
-    const call = peer.call('ypax_demo', localStream);
+    const call = peer.call('y-pax_proto', localStream);
     setupCallEventHandlers(call);
 });
 
