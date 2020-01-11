@@ -6,15 +6,15 @@ let existingCall = null;
 
 navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
-	// Success
-	$('#my-video').get(0).srcObject = stream;
-	localStream = stream;
+    // Success
+    //$('#my-video').get(0).srcObject = stream;
+    localStream = stream;
     const call = peer.call('y-pax_proto', localStream);
     setupCallEventHandlers(call);
     }).catch(function (error) {
-	// Error
-	console.error('mediaDevice.getUserMedia() error:', error);
-	return;
+    // Error
+    console.error('mediaDevice.getUserMedia() error:', error);
+    return;
     });
 
 peer = new Peer({
