@@ -3,6 +3,7 @@
 let localStream = null;
 let peer = null;
 let existingCall = null;
+let room = null;
 
 navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
@@ -24,7 +25,7 @@ peer = new Peer({
 
 peer.on('open', function(){
     //$('#my-id').text(peer.id);
-    var room = peer.joinRoom('y-pax_proto', {
+    room = peer.joinRoom('y-pax_proto', {
         mode: 'mesh',
         stream: localStream,
     });
