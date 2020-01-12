@@ -25,6 +25,23 @@ peer = new Peer({
 
 peer.on('open', function(){
     //$('#my-id').text(peer.id);
+});
+
+peer.on('error', function(err){
+    alert(err.message);
+    console.log(`${err.type}: ${err.message}`);
+});
+
+peer.on('close', function(){
+});
+
+peer.on('disconnected', function(){
+});
+
+$('#make-call').submit(function(e){
+//    e.preventDefault();
+//    const call = peer.call('y-pax_proto', localStream);
+//    setupCallEventHandlers(call);
     room = peer.joinRoom('y-pax_proto', {
         mode: 'mesh',
         stream: localStream,
@@ -44,26 +61,9 @@ peer.on('open', function(){
     });
 });
 
-peer.on('error', function(err){
-    alert(err.message);
-    console.log(`${err.type}: ${err.message}`);
-});
-
-peer.on('close', function(){
-});
-
-peer.on('disconnected', function(){
-});
-
-//$('#make-call').submit(function(e){
-//    e.preventDefault();
-//    const call = peer.call('y-pax_proto', localStream);
-//    setupCallEventHandlers(call);
-//});
-
-//$('#end-call').click(function(){
+$('#end-call').click(function(){
 //    existingCall.close();
-//});
+});
 
 peer.on('call', function(call){
     call.answer(localStream);
