@@ -32,11 +32,11 @@ peer.on('open', function(){
     $('#my-id').text(room.name);
 
     room.on('stream', function(stream){
+        setupEndCallUI();
     });
 
     room.on('peerJoin', function(peerId){
         $('#their-id').text(peerId);
-        setupEndCallUI();
     });
 
 });
