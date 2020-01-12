@@ -35,7 +35,8 @@ peer.on('open', function(){
     });
 
     room.on('peerJoin', function(peerId){
-        $('#my-id').text(peerId);
+        $('#their-id').text(peerId);
+        setupEndCallUI();
     });
 
 });
@@ -93,12 +94,12 @@ function removeVideo(peerId){
 }
 
 function setupMakeCallUI(){
-    //$('#make-call').show();
-    //$('#end-call').hide();
+    $('#make-call').show();
+    $('#end-call').hide();
 }
 
 function setupEndCallUI() {
-    //$('#make-call').hide();
-    //$('#end-call').show();
+    $('#make-call').hide();
+    $('#end-call').show();
 }
 
