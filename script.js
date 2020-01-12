@@ -3,18 +3,17 @@
 let localStream = null;
 let peer = null;
 let existingCall = null;
-let room = null;
 
 navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
     // Success
     //$('#my-video').get(0).srcObject = stream;
     localStream = stream;
-    //const call = peer.call('y-pax_proto', localStream);
-    //setupCallEventHandlers(call);
+    const call = peer.call('y-pax_proto', localStream);
+    setupCallEventHandlers(call);
     }).catch(function (error) {
     // Error
-    console.log(`mediaDevice.getUserMedia() error: ${error.message}`);
+    console.error('mediaDevice.getUserMedia() error:', error);
     return;
     });
 
@@ -29,7 +28,6 @@ peer.on('open', function(){
 
 peer.on('error', function(err){
     alert(err.message);
-    console.log(`${err.type}: ${err.message}`);
 });
 
 peer.on('close', function(){
@@ -38,32 +36,15 @@ peer.on('close', function(){
 peer.on('disconnected', function(){
 });
 
-$('#make-call').submit(function(e){
+//$('#make-call').submit(function(e){
 //    e.preventDefault();
 //    const call = peer.call('y-pax_proto', localStream);
 //    setupCallEventHandlers(call);
-    room = peer.joinRoom('y-pax_proto', {
-        mode: 'mesh',
-        stream: localStream,
-    });
+//});
 
-    $('#my-id').text(room.name);
-    console.log(`${room.name}`);
-
-    room.on('stream', function(stream){
-        console.log('on stream');
-        setupEndCallUI();
-    });
-
-    room.on('peerJoin', function(peerId){
-        console.log(`on peerJoin: ${peerId}`);
-        $('#their-id').text(peerId);
-    });
-});
-
-$('#end-call').click(function(){
+//$('#end-call').click(function(){
 //    existingCall.close();
-});
+//});
 
 peer.on('call', function(call){
     call.answer(localStream);
@@ -98,12 +79,12 @@ function removeVideo(peerId){
 }
 
 function setupMakeCallUI(){
-    $('#make-call').show();
-    $('#end-call').hide();
+    //$('#make-call').show();
+    //$('#end-call').hide();
 }
 
 function setupEndCallUI() {
-    $('#make-call').hide();
-    $('#end-call').show();
+    //$('#make-call').hide();
+    //$('#end-call').show();
 }
 
