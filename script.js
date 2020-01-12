@@ -30,6 +30,7 @@ peer.on('open', function(){
     });
 
     $('#my-id').text(room.name);
+});
 
     room.on('stream', function(stream){
         setupEndCallUI();
@@ -39,7 +40,6 @@ peer.on('open', function(){
         $('#their-id').text(peerId);
     });
 
-});
 
 peer.on('error', function(err){
     alert(err.message);
