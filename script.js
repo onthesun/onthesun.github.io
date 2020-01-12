@@ -31,6 +31,7 @@ peer.on('open', function(){
     });
 
     $('#my-id').text(room.name);
+    console.log(`${room.name}`);
 
     room.on('stream', function(stream){
         setupEndCallUI();
