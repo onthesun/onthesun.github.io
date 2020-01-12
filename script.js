@@ -34,10 +34,12 @@ peer.on('open', function(){
     console.log(`${room.name}`);
 
     room.on('stream', function(stream){
+        console.log('on stream');
         setupEndCallUI();
     });
 
     room.on('peerJoin', function(peerId){
+        console.log(`on peerJoin: ${peerId}`);
         $('#their-id').text(peerId);
     });
 });
