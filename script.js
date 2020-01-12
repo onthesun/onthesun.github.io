@@ -33,6 +33,11 @@ peer.on('open', function(){
 
     room.on('stream', function(stream){
     });
+
+    room.on('peerJoin', function(peerId){
+        $('#my-id').text(peerId);
+    });
+
 });
 
 peer.on('error', function(err){
