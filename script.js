@@ -14,7 +14,7 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     //setupCallEventHandlers(call);
     }).catch(function (error) {
     // Error
-    console.error('mediaDevice.getUserMedia() error:', error);
+    console.log(`mediaDevice.getUserMedia() error: ${error.message}`);
     return;
     });
 
@@ -44,6 +44,7 @@ peer.on('open', function(){
 
 peer.on('error', function(err){
     alert(err.message);
+    console.log(`${err.type}: ${err.message}`);
 });
 
 peer.on('close', function(){
