@@ -31,7 +31,6 @@ peer.on('open', function(){
     });
 
     $('#my-id').text(room.name);
-});
 
     room.on('stream', function(stream){
         setupEndCallUI();
@@ -40,7 +39,7 @@ peer.on('open', function(){
     room.on('peerJoin', function(peerId){
         $('#their-id').text(peerId);
     });
-
+});
 
 peer.on('error', function(err){
     alert(err.message);
