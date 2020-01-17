@@ -9,9 +9,6 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     // Success
     //$('#my-video').get(0).srcObject = stream;
     localStream = stream;
-    //const call = peer.call('y-pax_proto', localStream);
-    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', stream: localStream});
-    setupCallEventHandlers(call);
     }).catch(function (error) {
     // Error
     console.error('mediaDevice.getUserMedia() error:', error);
@@ -25,6 +22,9 @@ peer = new Peer({
 
 peer.on('open', function(){
     //$('#my-id').text(peer.id);
+    //const call = peer.call('y-pax_proto', localStream);
+    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', stream: localStream});
+    setupCallEventHandlers(call);
 });
 
 peer.on('error', function(err){
