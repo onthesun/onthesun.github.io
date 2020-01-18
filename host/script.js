@@ -9,15 +9,15 @@ peer = new Peer({
     debug: 3
 });
 
-const d1 = new Date();
-while (true) {
-  const d2 = new Date();
-  if (d2 - d1 > 2000) {
-    break;
-  }
-}
+//const d1 = new Date();
+//while (true) {
+//  const d2 = new Date();
+//  if (d2 - d1 > 2000) {
+//    break;
+//  }
+//}
 
-navigator.mediaDevices.getUserMedia({video: false, audio: {echoCancellation : true}})
+navigator.mediaDevices.getUserMedia({video: false, audio: {echoCancellation: true}})
     .then(function (stream) {
         // Success
         localStream = stream;
