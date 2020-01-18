@@ -49,9 +49,9 @@ function setupCallEventHandlers(call){
     });
 }
 
-function addVideo(stream){
+function addVideo(call,stream){
     const videoDom = $('<video autoplay>');
-    videoDom.attr('id',stream.remoteId);
+    videoDom.attr('id',call.remoteId);
     videoDom.get(0).srcObject = stream;
     $('.pure-g').append(videoDom);
 }
