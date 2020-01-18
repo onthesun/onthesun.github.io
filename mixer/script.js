@@ -24,7 +24,8 @@ peer.on('disconnected', function(){
 });
 
 $('#reload').click(function(){
-    setupCallEventHandlers(existingCall);
+    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
+    setupCallEventHandlers(call);
 });
 
 function setupCallEventHandlers(call){
