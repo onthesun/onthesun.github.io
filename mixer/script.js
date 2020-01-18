@@ -8,6 +8,14 @@ peer = new Peer({
     debug: 3
 });
 
+const d1 = new Date();
+while (true) {
+  const d2 = new Date();
+  if (d2 - d1 > 2000) {
+    break;
+  }
+}
+
 peer.on('open', function(){
     const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
@@ -36,26 +44,26 @@ function setupCallEventHandlers(call){
     existingCall = call;
 
     call.on('stream', function(stream){
-	addVideo(call,stream);
+	addAudio(call,stream);
     });
 
     call.on('peerLeave', function(peerId){
-	removeVideo(peerId);
+	removeAudio(peerId);
     });
 
     call.on('close', function(){
-	removeVideo(call.remoteId);
+	removeAudio(call.remoteId);
     });
 }
 
-function addVideo(call,stream){
-    const videoDom = $('<video autoplay>');
-    videoDom.attr('id',call.remoteId);
-    videoDom.get(0).srcObject = stream;
-    $('.y-pax').append(videoDom);
+function addAudio(call,stream){
+    const audioDom = $('<audio autoplay>');
+    audioDom.attr('id',call.remoteId);
+    audioDom.get(0).srcObject = stream;
+    $('.y-pax').append(audioDom);
 }
 
-function removeVideo(peerId){
+function removeAudio(peerId){
     $('#'+peerId).remove();
 
 }
