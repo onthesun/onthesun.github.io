@@ -17,7 +17,7 @@ while (true) {
   }
 }
 
-navigator.mediaDevices.getUserMedia({video: false, audio: true})
+navigator.mediaDevices.getUserMedia({video: false, audio: {echoCancellation : true}})
     .then(function (stream) {
         // Success
         localStream = stream;
