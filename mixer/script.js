@@ -32,11 +32,8 @@ function setupCallEventHandlers(call){
 
     existingCall = call;
 
-    $('#their-id').text(call.name);    
-
     call.on('stream', function(stream){
 	addVideo(call,stream);
-	setupEndCallUI();
     });
 
     call.on('peerLeave', function(peerId){
@@ -45,7 +42,6 @@ function setupCallEventHandlers(call){
 
     call.on('close', function(){
 	removeVideo(call.remoteId);
-	setupMakeCallUI();
     });
 }
 
@@ -53,25 +49,11 @@ function addVideo(call,stream){
     const videoDom = $('<video autoplay>');
     videoDom.attr('id',call.remoteId);
     videoDom.get(0).srcObject = stream;
-    $('.pure-g').append(videoDom);
+    $('.y-pax').append(videoDom);
 }
 
 function removeVideo(peerId){
     $('#'+peerId).remove();
 
-}
-
-//function removeAllRemoteVideos(){
-//    $('.pure-g').empty();
-//}
-
-function setupMakeCallUI(){
-    $('#make-call').show();
-    $('#end-call').hide();
-}
-
-function setupEndCallUI() {
-    $('#make-call').hide();
-    $('#end-call').show();
 }
 
