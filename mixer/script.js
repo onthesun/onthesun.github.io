@@ -11,7 +11,7 @@ peer = new Peer({
 
 peer.on('open', function(){
     $('#my-id').text(peer.id);
-    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh'});
+    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
 
@@ -61,9 +61,9 @@ function removeAudio(peerId){
 
 }
 
-function removeAllRemoteAudios(){
-    $('.pure-g').empty();
-}
+//function removeAllRemoteAudios(){
+//    $('.pure-g').empty();
+//}
 
 function setupMakeCallUI(){
     $('#make-call').show();
