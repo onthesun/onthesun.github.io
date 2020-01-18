@@ -21,7 +21,8 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
         // Success
         localStream = stream;
-        const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', stream: localStream});
+        //const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', stream: localStream});
+        const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', stream: localStream});
         setupCallEventHandlers(call);
     }).catch(function (error) {
         // Error

@@ -17,7 +17,8 @@ while (true) {
 }
 
 peer.on('open', function(){
-    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
+    //const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
+    const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
 
