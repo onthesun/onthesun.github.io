@@ -35,33 +35,33 @@ function setupCallEventHandlers(call){
     $('#their-id').text(call.name);    
 
     call.on('stream', function(stream){
-	addAudio(call,stream);
+	addVideo(call,stream);
 	setupEndCallUI();
     });
 
     call.on('peerLeave', function(peerId){
-	removeAudio(peerId);
+	removeVideo(peerId);
     });
 
     call.on('close', function(){
-	removeAudio(call.remoteId);
+	removeVideo(call.remoteId);
 	setupMakeCallUI();
     });
 }
 
-function addAudio(stream){
-    const audioDom = $('<audio autoplay>');
-    audioDom.attr('id',stream.remoteId);
-    audioDom.get(0).srcObject = stream;
-    $('.pure-g').append(audioDom);
+function addVideo(stream){
+    const videoDom = $('<video autoplay>');
+    videoDom.attr('id',stream.remoteId);
+    videoDom.get(0).srcObject = stream;
+    $('.pure-g').append(videoDom);
 }
 
-function removeAudio(peerId){
+function removeVideo(peerId){
     $('#'+peerId).remove();
 
 }
 
-//function removeAllRemoteAudios(){
+//function removeAllRemoteVideos(){
 //    $('.pure-g').empty();
 //}
 
