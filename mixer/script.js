@@ -1,6 +1,5 @@
 'use strict';
 
-let localStream = null;
 let peer = null;
 let existingCall = null;
 
@@ -10,7 +9,6 @@ peer = new Peer({
 });
 
 peer.on('open', function(){
-    $('#my-id').text(peer.id);
     const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
@@ -23,6 +21,10 @@ peer.on('close', function(){
 });
 
 peer.on('disconnected', function(){
+});
+
+$('#reload').click(function(){
+    setupCallEventHandlers(existingCall);
 });
 
 function setupCallEventHandlers(call){
