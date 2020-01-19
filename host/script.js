@@ -9,7 +9,7 @@ peer = new Peer({
     debug: 3
 });
 
-navigator.mediaDevices.getUserMedia({video: false, audio: {echoCancellation: true}})
+navigator.mediaDevices.getUserMedia({video: false, audio: {echoCancellation: true, echoCancellationType: "system"}})
     .then(function (stream) {
         // Success
         localStream = stream;
