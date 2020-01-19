@@ -18,7 +18,7 @@ while (true) {
 }
 
 peer.on('open', function(){
-    const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', audioReceiveEnabled: true});
+    const call = peer.joinRoom('web_mic', {mode: 'sfu', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
 
@@ -30,11 +30,6 @@ peer.on('close', function(){
 });
 
 peer.on('disconnected', function(){
-});
-
-$('#reload').click(function(){
-    const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', audioReceiveEnabled: true});
-    setupCallEventHandlers(call);
 });
 
 function setupCallEventHandlers(call){
@@ -60,11 +55,12 @@ function setupCallEventHandlers(call){
 function addAudio(call,stream){
     filterHowling(stream);
 
-    //const audioDom = $('<audio autoplay>');
+    // 生のオーディオはミュート (フィルタを使わない場合はミュートしないこと)
     const audioDom = $('<audio autoplay muted>');
+    //const audioDom = $('<audio autoplay>');
     audioDom.attr('id',call.remoteId);
     audioDom.get(0).srcObject = stream;
-    $('.y-pax').append(audioDom);
+    $('.web_mic').append(audioDom);
 }
 
 function removeAudio(peerId){
