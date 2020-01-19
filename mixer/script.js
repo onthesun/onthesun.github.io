@@ -11,13 +11,12 @@ peer = new Peer({
 const d1 = new Date();
 while (true) {
   const d2 = new Date();
-  if (d2 - d1 > 2000) {
+  if (d2 - d1 > 1000) {
     break;
   }
 }
 
 peer.on('open', function(){
-    //const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
     const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
@@ -33,7 +32,7 @@ peer.on('disconnected', function(){
 });
 
 $('#reload').click(function(){
-    const call = peer.joinRoom('y-pax_proto', {mode: 'mesh', audioReceiveEnabled: true});
+    const call = peer.joinRoom('y-pax_proto', {mode: 'sfu', audioReceiveEnabled: true});
     setupCallEventHandlers(call);
 });
 
@@ -58,7 +57,10 @@ function setupCallEventHandlers(call){
 }
 
 function addAudio(call,stream){
-    const audioDom = $('<audio autoplay>');
+    filterHowling(stream);
+
+    //const audioDom = $('<audio autoplay>');
+    const audioDom = $('<audio autoplay muted>');
     audioDom.attr('id',call.remoteId);
     audioDom.get(0).srcObject = stream;
     $('.y-pax').append(audioDom);
@@ -69,3 +71,33 @@ function removeAudio(peerId){
 
 }
 
+function filterHowling(stream){
+    const audioCtx = new AudioContext();
+    const audioSourceNode = audioCtx.createMediaStreamSource(stream);
+
+    // ハイシェルフフィルタ
+    // 8192Hz以下を通して、それ以外は減衰
+    const filter1 = audioCtx.createBiquadFilter();
+    filter1.type='highshelf';
+    filter1.frequency.value = 8192; // 周波数
+    filter1.gain.value = -40;       // ゲイン(強さ)
+   
+    // ピーキングフィルタ
+    // 0-500Hzを減衰       
+    const filter2 = audioCtx.createBiquadFilter();
+    filter2.type='peaking';
+    filter2.frequency.value = 250;  // 周波数
+    filter2.gain.value = -40;       // ゲイン(強さ)
+    
+    // バンドパスフィルタ
+    // 0-500Hzを通す。それ以外は減衰
+    const filter3 = audioCtx.createBiquadFilter();
+    filter3.type='bandpass';
+    filter3.frequency.value = 250; // 周波数(中央値)
+    
+    // フィルタの設定           
+    audioSourceNode.connect(filter1);
+    filter1.connect(filter2);
+    filter2.connect(filter3);
+    filter3.connect(audioCtx.destination); 
+}
