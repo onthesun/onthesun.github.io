@@ -8,6 +8,7 @@ peer = new Peer({
     debug: 3
 });
 
+// タイミングによってつながらないことがあるため待ちを入れてみる
 const d1 = new Date();
 while (true) {
   const d2 = new Date();
@@ -68,7 +69,6 @@ function addAudio(call,stream){
 
 function removeAudio(peerId){
     $('#'+peerId).remove();
-
 }
 
 function filterHowling(stream){
