@@ -16,7 +16,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
  
  1. Web Server から Web アプリをロード
  2. SkyWay のシグナリングサーバと接続
- 3. SkyWay サーバを経由して（SFU モード）スマートフォンからラズベリーパイへオーディオストリームを流す
+ 3. SkyWay サーバを経由して（SFU モード）スマホからラズパイへオーディオストリームを流す
 <div align="center">
 <img src="https://onthesun.github.io/images/WebMic.png" width=100%>
 </div>
@@ -26,6 +26,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
  * Raspberry Pi にインストールしたソフト（全部必要か不明）
    * npm 6.13.4
    * node v12.14.0
+   * chromium ?
 
  * 確認環境
    * Raspberry Pi 3 Model B
@@ -45,6 +46,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
     sudo npm cache clean
     sudo npm install npm n -g
     sudo n stable
+    sudo apt-get install -y rpi-chromium-mods  # 未確認
     ```
   * 起動時にブラウザを起動するよう設定
     1. /etc/systemd/system/open-browser.service を作成、編集
