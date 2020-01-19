@@ -80,14 +80,14 @@ function filterHowling(stream){
     const filter1 = audioCtx.createBiquadFilter();
     filter1.type='highshelf';
     filter1.frequency.value = 8192; // 周波数
-    filter1.gain.value = -40;       // ゲイン(強さ)
+    filter1.gain.value = -20;       // ゲイン(強さ)
    
     // ピーキングフィルタ
     // 0-500Hzを減衰       
     const filter2 = audioCtx.createBiquadFilter();
     filter2.type='peaking';
     filter2.frequency.value = 250;  // 周波数
-    filter2.gain.value = -40;       // ゲイン(強さ)
+    filter2.gain.value = -20;       // ゲイン(強さ)
     
     // バンドパスフィルタ
     // 0-500Hzを通す。それ以外は減衰
