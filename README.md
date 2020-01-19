@@ -6,20 +6,22 @@
  
 WebRTC (SkyWay) を使って特別なアプリをインストールすることなく通話を実現する。
 下記サイトにアクセスするとスマートフォンで喋った音声がラズパイから出力される!
- 
+
  https://onthesun.github.io/host/
-<div align="center">
-<img src="https://onthesun.github.io/images/WebMicQR.gif" width=50%>
-</div>
- 
+ <div align="center">
+ <img src="https://onthesun.github.io/images/WebMicQR.gif" width=50%>
+ </div>
+
 ## 動作説明
  
- 1. Web Server から Web アプリをロード
- 2. SkyWay のシグナリングサーバと接続
- 3. SkyWay サーバを経由して（SFU モード）スマホからラズパイへオーディオストリームを流す
-<div align="center">
-<img src="https://onthesun.github.io/images/WebMic.png" width=100%>
-</div>
+1. Web Server から Web アプリをロード
+2. SkyWay のシグナリングサーバと接続
+3. SkyWay サーバを経由して（SFU モード）スマホからラズパイへオーディオストリームを流す
+   <div align="center">
+   <img src="https://onthesun.github.io/images/WebMic.png" width=100%>
+   </div>
+
+確認した環境だと Audio は Opus 48kHz になった
 
 ## Requirement
 
