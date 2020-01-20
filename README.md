@@ -92,6 +92,12 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
     * https://console-webrtc-free.ecl.ntt.com/users/registration
   * アプリケーション作成
     * https://console-webrtc-free.ecl.ntt.com/add
+      * 利用可能なドメインには Web アプリをホスティングするドメインを入力
+        * このリポジトリを使う場合は onthesun.github.io
+      * 権限は変更なしでよい
+        * TURNを利用する
+        * SFUを利用する
+        * listAllPeers APIを利用する
     * 作成したら API キーを Host 側、Mixer 側 両方の script.js に反映する
 
 * WebServer
