@@ -52,6 +52,15 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
     sudo n stable
     sudo apt-get install -y rpi-chromium-mods  # 未確認
     ```
+
+  * 起動時にデスクトップを表示するよう設定
+    * raspi-config で設定する (動作未確認)
+       ```
+       sudo raspi-config
+         -> 3 Enable Boot to Desktop/Scratch
+           -> Desktop Log in as user ‘pi’ at the graphical desktop
+       ```
+
   * 起動時にブラウザを起動するよう設定
     1. /etc/systemd/system/open-browser.service を作成、編集
        ```
