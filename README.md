@@ -73,7 +73,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
        ```
   * プロキシ設定
     * chromium に拡張機能「Proxy SwitchyOmega」をインストール
-      * chrome ウェブストアから Proxy SwitchyOmega をインストール
+      * chrome ウェブストアから Proxy SwitchyOmega をインストールする
       * プロキシを設定して適用
       * この拡張機能を使えば簡単にプロキシ設定を ON/OFF できる
 
