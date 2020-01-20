@@ -30,7 +30,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
  * Raspberry Pi にインストールしたソフト（全部必要か不明）
    * npm 6.13.4
    * node v12.14.0
-   * chromium ?
+   * chromium (既にある場合は不要)
 
  * 確認環境
    * Raspberry Pi 3 Model B
