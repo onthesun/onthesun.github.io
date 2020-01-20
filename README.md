@@ -5,7 +5,7 @@
 ## 概要
  
 WebRTC (SkyWay) を使って特別なアプリをインストールすることなく通話を実現する。
-下記サイトにアクセスするとスマートフォンで喋った音声がラズパイから出力される!
+下記サイトにスマホからアクセスすると喋った音声がラズパイから出力される!
 
  https://onthesun.github.io/host/
  <div align="center">
@@ -17,9 +17,10 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
 1. Web Server から Web アプリをロード
 2. SkyWay のシグナリングサーバと接続
 3. SkyWay サーバを経由して（SFU モード）スマホからラズパイへオーディオストリームを流す
-   <div align="center">
-   <img src="https://onthesun.github.io/images/WebMic.png" width=100%>
-   </div>
+
+<div align="center">
+<img src="https://onthesun.github.io/images/WebMic.png" width=100%>
+</div>
 
 確認した環境だと Audio は Opus 48kHz になった
 
@@ -53,14 +54,28 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
   * 起動時にブラウザを起動するよう設定
     1. /etc/systemd/system/open-browser.service を作成、編集
        ```
-       TBD
+       [Unit]
+       Description=launch chromium-browser
+       
+       [Service]
+       User=pi
+       Environment=DISPLAY=:0
+       ExecStart=/usr/bin/chromium-browser https://onthesun.github.io/mixer/
+       
+       [Install]
+       WantedBy=user@.service
        ```
     2. 下記を実行
        ```
-       TBD
+       sudo systemctl daemon-reload
+       sudo systemctl enable open-browser.service
+       sudo systemctl start open-browser.service
        ```
   * プロキシ設定
-    * TBD
+    * chromium に拡張機能「Proxy SwitchyOmega」をインストール
+      * chrome ウェブストアから Proxy SwitchyOmega をインストール
+      * プロキシを設定して適用
+      * この拡張機能を使えば簡単にプロキシ設定を ON/OFF できる
 
 * SkyWay
   * アカウント作成
@@ -75,21 +90,21 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
     * スマホで host 側にアクセス
     * ラズパイで mixer 側にアクセス
 
-# Usage
+## Usage
  
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
+* ラズパイ
+  * 起動するだけ (起動には 2~3 分かかる ?)
+     * → 自動的に chromium が起動し、Mixer 側の Web アプリが立ち上がる
+* スマホ
+  * ブラウザで Host にアクセスするだけ
+     * → ラズパイと繋がり、スマホで話した声がラズパイから出力される
  
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
+## Note
  
-# Note
+* WebAudio でハウリング対策をしてみたものの効果は不明
+  * 遅延が大きくなっているかもしれないので切ったほうが良いかも
  
-注意点などがあれば書く
- 
-# Author
+## Author
  
 作成情報を列挙する
  
@@ -97,7 +112,7 @@ python demo.py
 * 所属
 * E-mail
  
-# License
+## License
 ライセンスを明示する
  
 "hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
