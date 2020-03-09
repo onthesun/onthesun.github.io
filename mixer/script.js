@@ -2,6 +2,9 @@
 
 let peer = null;
 let existingCall = null;
+let xhr = null;
+
+xhr = new XMLHttpRequest();
 
 peer = new Peer({
     key: 'ef82b5ff-e40f-4a82-8b04-c0f6e61d902c',
@@ -12,7 +15,7 @@ peer = new Peer({
 const d1 = new Date();
 while (true) {
   const d2 = new Date();
-  if (d2 - d1 > 1000) {
+  if (d2 - d1 > 2000) {
     break;
   }
 }
@@ -33,22 +36,33 @@ peer.on('disconnected', function(){
 });
 
 function setupCallEventHandlers(call){
+    var url = 'http://localhost:3000/';
+    var method = 'GET';
+
     if (existingCall) {
 	existingCall.close();
     };
 
     existingCall = call;
+    xhr.open(method, url + '?led=1');
+    xhr.send();
 
     call.on('stream', function(stream){
-	addAudio(call,stream);
+        xhr.open(method, url + '?led=2');
+        xhr.send();
+        addAudio(call,stream);
     });
 
     call.on('peerLeave', function(peerId){
-	removeAudio(peerId);
+        xhr.open(method, url + '?led=1');
+        xhr.send();
+        removeAudio(peerId);
     });
 
     call.on('close', function(){
-	removeAudio(call.remoteId);
+        xhr.open(method, url + '?led=0');
+        xhr.send();
+        removeAudio(call.remoteId);
     });
 }
 
