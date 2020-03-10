@@ -53,7 +53,8 @@ function setupCallEventHandlers(call){
     });
 
     call.on('peerJoin', function(peerId){
-	if (num == 0) {
+        if (num <= 0) {
+            num = 0;
             xhr.open(method, url + '?led=2');
             xhr.send();
 	}
@@ -62,7 +63,8 @@ function setupCallEventHandlers(call){
 
     call.on('peerLeave', function(peerId){
         num--;
-	if (num == 0) {
+        if (num <= 0) {
+            num = 0;
             xhr.open(method, url + '?led=1');
             xhr.send();
         }
