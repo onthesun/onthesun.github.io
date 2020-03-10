@@ -3,6 +3,7 @@
 let peer = null;
 let existingCall = null;
 let xhr = null;
+let num = 0;
 
 xhr = new XMLHttpRequest();
 
@@ -48,14 +49,23 @@ function setupCallEventHandlers(call){
     xhr.send();
 
     call.on('stream', function(stream){
-        xhr.open(method, url + '?led=2');
-        xhr.send();
         addAudio(call,stream);
     });
 
+    call.on('peerJoin', function(peerId){
+	if (num == 0) {
+            xhr.open(method, url + '?led=2');
+            xhr.send();
+	}
+	num++;
+    });
+
     call.on('peerLeave', function(peerId){
-        xhr.open(method, url + '?led=1');
-        xhr.send();
+        num--;
+	if (num == 0) {
+            xhr.open(method, url + '?led=1');
+            xhr.send();
+        }
         removeAudio(peerId);
     });
 
