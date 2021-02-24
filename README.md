@@ -34,7 +34,7 @@ WebRTC (SkyWay) を使って特別なアプリをインストールすること�
 
  * 確認環境
    * Raspberry Pi 3 Model B
-     * Linux ontheyopi 4.19.66-v7+ #1253 SMP Thu Aug 15 11:49:46 BST 2019 armv7l GNU/Linux
+     * Linux pi 4.19.66-v7+ #1253 SMP Thu Aug 15 11:49:46 BST 2019 armv7l GNU/Linux
      * Chromium 72.0.3626.121（Official Build）Built on Raspbian , running on Raspbian 9.11 （32 ビット）
    * iPhone X
      * iOS 13.3
